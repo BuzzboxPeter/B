@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AR Application</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://aframe.io/releases/0.8.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/AR.js/1.6.0/aframe/build/aframe-ar.js"></script>
+    <script src="https://rawgit.com/donmccurdy/aframe-extras/master/dist/aframe-extras.loaders.min.js"></script>
+
+    <style>
+      .PrimaryButton {
+        position: absolute;
+        bottom: 10%;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 20px;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: yellow;
+      }
+
+      .link {
+        color: #333;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Hello world!</h1>
+    <a-scene
+      embedded
+      arjs="sourceType: webcam; detectionMode: mono_and_matrix; matrixCodeType: 3x3; patternRatio: 0.5"
+    >
+      <a-asset>
+        <img src="./house.svg" id="house" />
+        <a-asset-item id="shoe" src="./scene.gltf"></a-asset-item>
+      </a-asset>
+
+      <a-marker
+        type="pattern"
+        preset="hiro"
+        id="marker-hiro"
+        emitevents="true"
+        cursor="fuse: false; rayOrigin: mouse"
+      >
+        <a-entity position="0 0 -0.5">
+          <!-- <a-gltf-model
+            src="#shoe"
+            scale="1 1 1"
+            rotation="-90 0 0"
+          ></a-gltf-model> -->
+          <a-image src="#house"></a-image>
+        </a-entity>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+
+    <button class="PrimaryButton">
+      <a class="link" href="https://google.com">Click me</a>
+    </button>
+  </body>
+</html>
